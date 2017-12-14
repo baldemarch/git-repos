@@ -1,0 +1,27 @@
+{
+  "name": "git-repos",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Baldemar Roldan"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.7"
+  },
+  "devDependencies": {
+    "less": "^2.7.3",
+    "angular-ui-router": "^1.0.11",
+    "angular-mocks": "^1.6.7",
+    "bootstrap": "^3.3.7"
+  }
+}

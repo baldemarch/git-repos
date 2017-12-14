@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="git-repos">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Git Repos</title>
+
+  <!-- Css files -->
+  <!-- libs:css -->
+  <!-- endinject -->
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+<body>
+  <div class="container-fluid repositories ng-cloak" ng-controller="IndexController as vm">
+    <div class="panel panel-default repo" ng-repeat="repo in vm.data.repos">
+      <div class="panel-heading">
+        <h4>{{repo.name}} / <small>{{repo.full_name}}</small> 
+          <a ng-href="{{repo.html_url}}" target="_blank">
+            <span class="glyphicon glyphicon-new-window"></span>
+          </a>
+        </h4>
+      </div>
+      <div class="panel-body repo--select" ng-click="vm.fn.showComments(repo)">
+        <div ng-hide="vm.prop.id === repo.id">{{repo.description}}</div>
+        <h4 ng-show="vm.prop.id === repo.id">
+          {{repo.description}}
+        </h4>
+        <div class="ng-cloak cm" ng-show="vm.prop.id === repo.id">
+          <a ng-repeat="cm in vm.data.comments | orderBy: 'updated_at':true" ng-href="{{cm.html_url}}" target="_blank">
+            <div class="cm--item">
+              <div class="media">
+                <div class="media-left">
+                  <img class="media-object cm--img" ng-src="{{cm.user.avatar_url}}/64x64" alt="{{cm.user.login}}">
+                </div>
+                <div class="media-body">
+                  <h5 class="media-heading">{{cm.user.login}} said on <span class="text-muted">{{cm.updated_at | date}}</span>:</h5>
+                  {{cm.body}}
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div ng-repeat="repo in vm.data.repos">
+
+    </div>
+  </div>
+
+  <!-- Js libraries -->
+  <!-- libs:js -->
+  <!-- endinject -->
+  <!-- inject:js -->
+  <!-- endinject -->
+
+</body>
+</html>
