@@ -24,7 +24,9 @@
 
     vm.fn = {
       getRepos: getReposFn,
-      showComments: showCommentsFn
+      showComments: showCommentsFn,
+      searchRepo: searchRepoFn,
+      closeRepo: closeRepoFn
     };
 
     function getReposFn() {
@@ -54,6 +56,29 @@
       };
 
       GitService.search(_endpoint).then(showCommentsSuccess, showCommentsError);
+    }
+
+    function searchRepoFn() {
+      let _repo = vm.data.search;
+
+      var searchSuccess = function(success) {
+        console.log('success', success);
+        vm.data.repos = success.data.items;
+      };
+
+      var searchError = function(error) {
+        console.log('searchError', error);
+        throw('No repos found');
+      };
+
+      GitService.search(`/search/repositories?q=${_repo}`).then(searchSuccess, searchError);
+
+    }
+
+    function closeRepoFn(e) {
+      e.stopPropagation();
+      vm.data.comments = null;
+      vm.prop.id = '';
     }
 
     getReposFn();

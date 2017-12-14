@@ -14,6 +14,10 @@
 </head>
 <body>
   <div class="container-fluid repositories ng-cloak" ng-controller="IndexController as vm">
+    <div>
+      <input type="text" placeholder="Buscar repo" ng-model="vm.data.search">
+      <button ng-click="vm.fn.searchRepo()">Buscar</button>
+    </div>
     <div class="panel panel-default repo" ng-repeat="repo in vm.data.repos">
       <div class="panel-heading">
         <h4>{{repo.name}} / <small>{{repo.full_name}}</small> 
@@ -26,6 +30,10 @@
         <div ng-hide="vm.prop.id === repo.id">{{repo.description}}</div>
         <h4 ng-show="vm.prop.id === repo.id">
           {{repo.description}}
+
+          <div class="pull-right" ng-if="vm.prop.id === repo.id" ng-click="vm.fn.closeRepo($event)">
+            CERRAR
+          </div>
         </h4>
         <div class="ng-cloak cm" ng-show="vm.prop.id === repo.id">
           <a ng-repeat="cm in vm.data.comments | orderBy: 'updated_at':true" ng-href="{{cm.html_url}}" target="_blank">
