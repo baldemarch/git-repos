@@ -32,6 +32,5 @@
     "karma-spec-reporter": "0.0.31",
     "run-sequence": "^2.2.0"
   },
-  "dependencies": {},
-  "postinstall": "bower --config.interactive=false install",
+  "dependencies": {}
 }
